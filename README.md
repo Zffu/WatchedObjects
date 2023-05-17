@@ -105,6 +105,13 @@ myWatchedObject.setValue("hello world")
 
 // This will print the last edit time of the value in the console 
 console.log(myWatchedObject.getLastEditTimestamp())
+
+// Get the stored version of the WatchedObject
+let myStoredWatchedObject = myWatchedObject.getStored();
+
+// This will update the value of the WatchedObject object from the stored version
+myWatchedObject.updateValue()
+
 ```
 
 _For more examples, please refer to the [Documentation](https://github.com/Zffu/WatchedObjects/wiki)_
