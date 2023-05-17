@@ -94,13 +94,17 @@ Before using WatchedObjects you will need to install it, you can do it by adding
 
 You can use WatchedObjects to do something like this: 
 ```javascript
+// Create a WatchedObject with a constructor
 let myWatchedObject = new WatchedObject("hello world");
+
+// Easier Method to create a WatchedObject
+"hello world".toWatchedObject()
 
 // This will throw a warning because its already the given value
 myWatchedObject.setValue("hello world")
 
-// This will print the last edit time of the value in the console
-console.log(WatchedObjectsRegistry.watchedObjects[myWatchedObject.watchingUUID].lastEditTime)
+// This will print the last edit time of the value in the console 
+console.log(myWatchedObject.getLastEditTimestamp())
 ```
 
 _For more examples, please refer to the [Documentation](https://github.com/Zffu/WatchedObjects/wiki)_
