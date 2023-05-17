@@ -4,6 +4,12 @@ const WatchedObjectsRegistry = {
 		return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
     		(c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
   		);
+	},
+	isWatchedObject: function(object) {
+		if(object instanceof WatchedObject && WatchedObjectsRegistry.watchingObjects[object["watchingUUID"]] != undefined) {
+			return true;
+		}
+		return false;
 	}
 }
 
@@ -16,6 +22,14 @@ class StoredWatchedObject {
 		this.oldValues = [];
 		this.watchingUUID = WatchedObjectsRegistry.makeUUID()
 		WatchedObjectsRegistry.watchingObjects[this.watchingUUID] = this;
+	}
+	isLinkedTo(watchedObject) {
+		if(watchedObject["watchingUUID"] != undefined) {
+			return this.watchingUUID == watchedObject["watchingUUID"]
+		}
+		else {
+			return false;
+		}
 	}
 }
 
@@ -53,6 +67,10 @@ class WatchedObject {
 	updateValue() {
 		this.currentValue = WatchedObjectsRegistry.watchingObjects[this.watchingUUID].storedValue;
 		WatchedObjectsRegistry.watchingObjects[this.watchingUUID].lastTimeValueUpdated = new Date().getTime();
+	}
+	delete() {
+		WatchedObjectsRegistry.watchingObjects.delete(WatchedObjectsRegistry.watchingObjects.indexOf(WatchedObjectsRegistry.watchingObjects[this.watchingUUID]))
+		this = null;
 	}
 	setValue(value) {
 		let storedValue = WatchedObjectsRegistry.watchingObjects[this.watchingUUID].storedValue;
