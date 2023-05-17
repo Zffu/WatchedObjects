@@ -116,7 +116,7 @@ _For more examples, please refer to the [Documentation](https://github.com/Zffu/
 ## Roadmap
 
 - [x] Add the Basic WatchedObjects system
-- [] Add more function to make it easier
+- [ ] Add more function to make it easier
 
 See the [open issues](https://github.com/Zffu/WatchedObjects/issues) for a full list of proposed features (and known issues).
 
