@@ -85,6 +85,9 @@ class WatchedObject {
 			console.warn("WatchedObjects: The stored Value is the same as the new value! UUID: " + this.watchingUUID)
 		}
 	}
+	getJSON() {
+		return JSON.stringify(this)
+	}
 }
 
 Object.prototype.toWatchedObject = function() {
