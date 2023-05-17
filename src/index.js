@@ -10,17 +10,23 @@ const WatchedObjectsRegistry = {
 			return true;
 		}
 		return false;
+	},
+	tickWatchedObjects: function() {
+		this.watchingObjects.forEach(watchingObject => {
+			
+		});
 	}
 }
 
 class StoredWatchedObject {
-	constructor(value) {
+	constructor(value, watchedObject) {
 		this.creationTime = new Date().getTime()
 		this.lastEditTime = new Date().getTime()
 		this.lastTimeValueUpdated = new Date().getTime()
 		this.storedValue = value;
 		this.oldValues = [];
 		this.watchingUUID = WatchedObjectsRegistry.makeUUID()
+		this.watchingObject = watchedObject;
 		WatchedObjectsRegistry.watchingObjects[this.watchingUUID] = this;
 	}
 	isLinkedTo(watchedObject) {
@@ -52,7 +58,7 @@ class WatchedObject {
 			}
 		}
 		this.currentValue = value;
-		let s = new StoredWatchedObject(value);
+		let s = new StoredWatchedObject(value, this);
 		this.watchingUUID = s.watchingUUID;
 	}
 	getLastEditTimestamp() {
