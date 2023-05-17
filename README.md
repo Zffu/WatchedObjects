@@ -81,6 +81,7 @@ To get started with WatchedObjects, you can check the wiki page
 ### Installation
 
 Before using WatchedObjects you will need to install it, you can do it by adding this to your html file: 
+(Comming very soon)
   ```html
   <script src="https://cdn.zffu.ml/js/watchedobjects/1.0/WatchedObjects-1.0.js"></script>
   ```
