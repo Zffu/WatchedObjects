@@ -41,6 +41,15 @@ class WatchedObject {
 		let s = new StoredWatchedObject(value);
 		this.watchingUUID = s.watchingUUID;
 	}
+	getLastEditTimestamp() {
+		return this.getStored().lastEditTime;
+	}
+	getCreatedTimestamp() {
+		return this.getStored().creationTime;
+	}
+	getStored() {
+		return WatchedObjectsRegistry.watchingObjects[this.watchingUUID];
+	}
 	updateValue() {
 		this.currentValue = WatchedObjectsRegistry.watchingObjects[this.watchingUUID].storedValue;
 		WatchedObjectsRegistry.watchingObjects[this.watchingUUID].lastTimeValueUpdated = new Date().getTime();
