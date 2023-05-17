@@ -69,4 +69,7 @@ class WatchedObject {
 	}
 }
 
+Object.prototype.toWatchedObject = function() {
+	return new WatchedObject(this)
+}
 
